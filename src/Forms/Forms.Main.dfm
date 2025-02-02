@@ -14,9 +14,16 @@ object Form1: TForm1
   OnClose = FormClose
   OnCreate = FormCreate
   TextHeight = 15
-  object btnListaEnderecos: TButton
+  object CEP: TLabel
     Left = 176
-    Top = 65
+    Top = 48
+    Width = 21
+    Height = 15
+    Caption = 'CEP'
+  end
+  object btnListaEnderecos: TButton
+    Left = 120
+    Top = 185
     Width = 105
     Height = 25
     Caption = 'Listar Endere'#231'os'
@@ -105,8 +112,8 @@ object Form1: TForm1
       end>
   end
   object Button1: TButton
-    Left = 295
-    Top = 65
+    Left = 231
+    Top = 185
     Width = 75
     Height = 25
     Caption = 'Button1'
@@ -114,8 +121,8 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object btnBuscarCEP: TButton
-    Left = 376
-    Top = 65
+    Left = 312
+    Top = 185
     Width = 75
     Height = 25
     Caption = 'Buscar CEP'
@@ -129,20 +136,40 @@ object Form1: TForm1
     Height = 158
     Align = alBottom
     TabOrder = 4
-    ExplicitTop = 336
+  end
+  object rgTipoRetorno: TRadioGroup
+    Left = 176
+    Top = 112
+    Width = 185
+    Height = 49
+    Caption = 'Tipo Retorno: '
+    Columns = 2
+    ItemIndex = 0
+    Items.Strings = (
+      'JSON'
+      'XML')
+    TabOrder = 5
+  end
+  object edtCEP: TEdit
+    Left = 176
+    Top = 69
+    Width = 121
+    Height = 23
+    NumbersOnly = True
+    TabOrder = 6
   end
   object DataSource1: TDataSource
     AutoEdit = False
     DataSet = tbEndereco
-    Left = 512
-    Top = 568
+    Left = 496
+    Top = 464
   end
   object tbEndereco: TFDTable
     IndexFieldNames = 'codigo'
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'endereco'
-    Left = 376
-    Top = 560
+    Left = 432
+    Top = 456
   end
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'

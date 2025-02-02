@@ -9,7 +9,8 @@ uses
   Vcl.Grids, Vcl.DBGrids, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.UI.Intf,
-  FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.ExtCtrls;
 
 type
   TForm1 = class(TForm)
@@ -21,6 +22,9 @@ type
     Button1: TButton;
     btnBuscarCEP: TButton;
     mmResultados: TMemo;
+    rgTipoRetorno: TRadioGroup;
+    CEP: TLabel;
+    edtCEP: TEdit;
     procedure btnListaEnderecosClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -40,7 +44,7 @@ var
 implementation
 
 uses
-  Interfaces.Interfaces, Interfaces.BuscaCepFactory;
+  Interfaces.Interfaces, Interfaces.BuscaCepFactory, Utils.BuscaCEPUtils;
 
 {$R *.dfm}
 procedure TForm1.FormCreate(Sender: TObject);
@@ -58,6 +62,11 @@ begin
                 .Conectar;
 end;
 
+procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  FConexao.Desconectar;
+end;
+
 function TForm1.getConexao: TFDConnection;
 begin
   Result := (FConexao.EndConexao as TFDConnection);
@@ -65,11 +74,23 @@ end;
 
 procedure TForm1.btnBuscarCEPClick(Sender: TObject);
 var
-  vBuscaCEPService: iCEPService;
   vDadosCEP: iDadosCEP;
 begin
-  vBuscaCEPService := TBuscaCepFactory.New.CriarServico('JSON');
-  vDadosCEP := vBuscaCEPService.BuscarCEP('87060025');
+
+  try
+    vDadosCEP := TBuscaCepFactory.New.CriarServico(TTypeBusca(rgTipoRetorno.ItemIndex)).BuscarCEP(edtCEP.Text);
+  except
+    on E: Exception do
+    begin
+      Application.MessageBox(PWideChar('Falha ao consulta CEP. Erro: ' + E.Message), 'Atenção', MB_ICONERROR);
+      Abort;
+    end;
+  end;
+
+  if vDadosCEP.Erro then
+  begin
+    Application.MessageBox('CEP Inexistente na Base de Dados do ViaCep ou Inválido.', 'Atenção', MB_ICONINFORMATION);
+  end;
 
   mmResultados.Lines.Clear;
   mmResultados.Lines.Add('CEP: ' + vDadosCEP.CEP);
@@ -79,7 +100,7 @@ end;
 procedure TForm1.btnListaEnderecosClick(Sender: TObject);
 begin
   //Aqui o Ideal seria abstrair o TFDTable para um iTable
-  //mas como o tempo é curto, abstrai somente a conexão
+  //mas como o tempo é curto, abstraí somente a conexão
   tbEndereco.Close;
   tbEndereco.Connection := getConexao;
   tbEndereco.Open;
@@ -100,11 +121,6 @@ begin
   finally
     vQry.Free;
   end;
-end;
-
-procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  FConexao.Desconectar;
 end;
 
 end.

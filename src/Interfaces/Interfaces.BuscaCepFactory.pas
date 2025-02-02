@@ -3,7 +3,7 @@ unit Interfaces.BuscaCepFactory;
 interface
 
 uses
-  Interfaces.Interfaces;
+  Interfaces.Interfaces, Utils.BuscaCEPUtils;
 
 type
   TBuscaCepFactory = class(TInterfacedObject, iBuscaCepFactory)
@@ -12,13 +12,14 @@ type
       constructor Create;
       destructor Destroy; override;
       class function New: iBuscaCepFactory;
-      function CriarServico(const AFormato: string): ICepService;
+      function CriarServico(AFormato: TTypeBusca): iBuscaCEPService;
   end;
 
 implementation
 
 uses
-  System.SysUtils, Interfaces.CEPViaJsonService;
+  System.SysUtils,
+  Interfaces.BuscaCEPJsonService, Interfaces.BuscaCEPXmlService;
 
 { TBuscaCepFactory }
 
@@ -27,15 +28,12 @@ begin
 
 end;
 
-function TBuscaCepFactory.CriarServico(const AFormato: string): ICepService;
+function TBuscaCepFactory.CriarServico(AFormato: TTypeBusca): iBuscaCEPService;
 begin
-  if AFormato.ToUpper = 'JSON' then
-  begin
-    Result := TCEPViaJsonService.New;
-  end
-  else
-  begin
-    raise Exception.Create('Não Implementado');
+  case AFormato of
+    ttbJSON: Result := TBuscaCEPJsonService.New;
+    ttbXML:  Result := TBuscaCEPXmlService.New;
+    else raise Exception.Create('Tipo de Busca não implementado.');
   end;
 end;
 

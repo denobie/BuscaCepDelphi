@@ -5,6 +5,8 @@ interface
 uses
   Interfaces.Interfaces;
 
+{$M+}
+
 type
   TDadosCEP = class(TInterfacedObject, iDadosCEP)
     private
@@ -21,6 +23,7 @@ type
       FGia: String;
       FDDD: Integer;
       FSiafi: String;
+      FErro: Boolean;
 
       function GetBairro: String;
       function GetCEP: String;
@@ -35,6 +38,7 @@ type
       function GetSiafi: String;
       function GetUf: String;
       function GetUnidade: String;
+      function GetErro: Boolean;
 
       procedure SetBairro(const Value: String);
       procedure SetCEP(const Value: String);
@@ -49,7 +53,14 @@ type
       procedure SetSiafi(const Value: String);
       procedure SetUf(const Value: String);
       procedure SetUnidade(const Value: String);
+      procedure SetErro(const Value: Boolean);
 
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New: iDadosCEP;
+
+    published
       property CEP: String read GetCEP write SetCEP;
       property Logradouro: String read GetLogradouro write SetLogradouro;
       property Complemento: String read GetComplemento write SetComplemento;
@@ -63,10 +74,7 @@ type
       property Gia: String read GetGia write SetGia;
       property DDD: Integer read GetDDD write SetDDD;
       property Siafi: String read GetSiafi write SetSiafi;
-    public
-      constructor Create;
-      destructor Destroy; override;
-      class function New: iDadosCEP;
+      property Erro: Boolean read GetErro write SetErro;
   end;
 
 
@@ -83,6 +91,11 @@ destructor TDadosCEP.Destroy;
 begin
 
   inherited;
+end;
+
+class function TDadosCEP.New: iDadosCEP;
+begin
+  Result := Self.Create;
 end;
 
 function TDadosCEP.GetBairro: String;
@@ -150,9 +163,9 @@ begin
   Result := FUnidade;
 end;
 
-class function TDadosCEP.New: iDadosCEP;
+function TDadosCEP.GetErro: Boolean;
 begin
-  Result := Self.Create;
+  Result := FErro;
 end;
 
 procedure TDadosCEP.SetBairro(const Value: String);
@@ -218,6 +231,11 @@ end;
 procedure TDadosCEP.SetUnidade(const Value: String);
 begin
   FUnidade := Value;
+end;
+
+procedure TDadosCEP.SetErro(const Value: Boolean);
+begin
+  FErro := Value;
 end;
 
 end.

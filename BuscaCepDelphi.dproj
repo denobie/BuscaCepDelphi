@@ -137,8 +137,11 @@
         <DCCReference Include="src\Model\Conexoes\Model.Conexoes.Factory.Conexao.pas"/>
         <DCCReference Include="src\Interfaces\Interfaces.Interfaces.pas"/>
         <DCCReference Include="src\Interfaces\Interfaces.DadosCEP.pas"/>
-        <DCCReference Include="src\Interfaces\Interfaces.CEPViaJsonService.pas"/>
+        <DCCReference Include="src\Interfaces\Interfaces.BuscaCEPJsonService.pas"/>
         <DCCReference Include="src\Interfaces\Interfaces.BuscaCepFactory.pas"/>
+        <DCCReference Include="src\Interfaces\Interfaces.BuscaCEPXmlService.pas"/>
+        <DCCReference Include="src\Interfaces\Interfaces.BuscaCEPService.pas"/>
+        <DCCReference Include="src\Utils\Utils.BuscaCEPUtils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
