@@ -138,7 +138,7 @@ begin
   begin
     vDadosCEP := ExcutarBuscaCEPFactory(edtCEP.Text);
     InserirCEP(vDadosCEP);
-    MostrarDadosCEP(vDadosCEP);
+    MostrarDadosCEP(GetCEP(vDadosCEP.CEP));
   end;
 end;
 
@@ -183,7 +183,7 @@ begin
 
     if vListaDadosCEP.Items.Count = 1 then
     begin
-      MostrarDadosCEP(vDadosCEP);
+      MostrarDadosCEP(GetCEP(vDadosCEP.CEP));
     end
     else
     begin
@@ -247,8 +247,8 @@ begin
     vQry.Connection := getConexao;
     vQry.SQL.Text   := 'select count(*) as total ' +
                      '  from endereco ' +
-                     ' where logradouro ilike :logradouro ' +
-                     '   and localidade ilike :localidade ' +
+                     ' where unaccent(logradouro) ilike unaccent(:logradouro) ' +
+                     '   and unaccent(localidade) ilike unaccent(:localidade) ' +
                      '   and uf ilike :uf';
 
     vQry.ParamByName('logradouro').AsString := Format(cCONTEM, [AEndereco]);
@@ -347,7 +347,7 @@ begin
 
   UpdateCEP(vDadosCEP, ACodigoCEP);
 
-  MostrarDadosCEP(vDadosCEP);
+  MostrarDadosCEP(GetCEP(vDadosCEP.CEP));
 end;
 
 procedure TFrmMain.AtualizarEnderecos(AEstado, ACidade, AEndereco: String);
@@ -376,7 +376,7 @@ begin
 
   if vListaDadosCEP.Items.Count = 1 then
   begin
-    MostrarDadosCEP(vDadosCEP);
+    MostrarDadosCEP(GetCEP(vDadosCEP.CEP));
   end
   else
   begin
@@ -529,9 +529,10 @@ begin
   qryDados.SQL.Clear;
   qryDados.SQL.Text := 'select * ' +
                        '  from endereco ' +
-                       ' where logradouro ilike :logradouro ' +
-                       '   and localidade ilike :localidade ' +
-                       '   and uf ilike :uf';
+                       ' where unaccent(logradouro) ilike unaccent(:logradouro) ' +
+                       '   and unaccent(localidade) ilike unaccent(:localidade) ' +
+                       '   and uf ilike :uf ' +
+                       ' order by codigo';
 
   qryDados.ParamByName('logradouro').AsString := Format(cCONTEM, [AEndereco]);
   qryDados.ParamByName('localidade').AsString := Format(cCONTEM, [ACidade]);

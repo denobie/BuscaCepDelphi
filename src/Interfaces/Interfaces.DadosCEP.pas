@@ -64,21 +64,21 @@ type
       class function New: iDadosCEP;
 
     published
-      property CEP: String read GetCEP write SetCEP;
-      property Logradouro: String read GetLogradouro write SetLogradouro;
-      property Complemento: String read GetComplemento write SetComplemento;
-      property Unidade: String read GetUnidade write SetUnidade;
-      property Bairro: String read GetBairro write SetBairro;
-      property Localidade: String read GetLocalidade write SetLocalidade;
-      property Uf: String read GetUf write SetUf;
-      property Estado: String read GetEstado write SetEstado;
-      property Regiao: String read GetRegiao write SetRegiao;
-      property IBGE: Integer read GetIBGE write SetIBGE;
-      property Gia: String read GetGia write SetGia;
-      property DDD: Integer read GetDDD write SetDDD;
-      property Siafi: String read GetSiafi write SetSiafi;
-      property Erro: Boolean read GetErro write SetErro;
-      property Codigo: Integer read GetCodigo write SetCodigo;
+      property cep: String read GetCEP write SetCEP;
+      property logradouro: String read GetLogradouro write SetLogradouro;
+      property complemento: String read GetComplemento write SetComplemento;
+      property unidade: String read GetUnidade write SetUnidade;
+      property bairro: String read GetBairro write SetBairro;
+      property localidade: String read GetLocalidade write SetLocalidade;
+      property uf: String read GetUf write SetUf;
+      property estado: String read GetEstado write SetEstado;
+      property regiao: String read GetRegiao write SetRegiao;
+      property ibge: Integer read GetIBGE write SetIBGE;
+      property gia: String read GetGia write SetGia;
+      property ddd: Integer read GetDDD write SetDDD;
+      property siafi: String read GetSiafi write SetSiafi;
+      property erro: Boolean read GetErro write SetErro;
+      property codigo: Integer read GetCodigo write SetCodigo;
   end;
 
 
