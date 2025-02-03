@@ -52,7 +52,9 @@ begin
   except
     on E: Exception do
     begin
-      raise Exception.CreateFmt('Erro ao Conectar no Banco de Dados. Erro: %s', [e.Message]);
+      raise Exception.CreateFmt('Erro ao Conectar no Banco de Dados. ' + #13 +
+                                'Verifique se a DLL libpq.dll está na pasta do Executável. ' + #13 +
+                                'Erro: %s', [e.Message]);
     end;
   end;
 end;
@@ -107,8 +109,6 @@ begin
   FConexao.Params.Add(Format('User_name=%s', [FUser_Name]));
   FConexao.Params.Add(Format('Password=%s', [FPassword]));
   FConexao.Params.Add(Format('Port=%s', [FPort]));
-
-  FDPhysPgDriverLink.VendorLib := 'E:\dev\github\BuscaCepDelphi\bin\libpq.dll';
 end;
 
 function TConexadoFireDac.Parametros: iConexaoParametros;

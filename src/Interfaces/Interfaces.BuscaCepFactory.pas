@@ -12,7 +12,7 @@ type
       constructor Create;
       destructor Destroy; override;
       class function New: iBuscaCepFactory;
-      function CriarServico(AFormato: TTypeBusca): iBuscaCEPService;
+      function CriarServicoBuscaCEP(AFormato: TTypeBusca): iBuscaCEPService;
   end;
 
 implementation
@@ -28,7 +28,7 @@ begin
 
 end;
 
-function TBuscaCepFactory.CriarServico(AFormato: TTypeBusca): iBuscaCEPService;
+function TBuscaCepFactory.CriarServicoBuscaCEP(AFormato: TTypeBusca): iBuscaCEPService;
 begin
   case AFormato of
     ttbJSON: Result := TBuscaCEPJsonService.New;

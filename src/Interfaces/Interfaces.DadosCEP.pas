@@ -24,6 +24,7 @@ type
       FDDD: Integer;
       FSiafi: String;
       FErro: Boolean;
+      FCodigo: Integer;
 
       function GetBairro: String;
       function GetCEP: String;
@@ -39,6 +40,7 @@ type
       function GetUf: String;
       function GetUnidade: String;
       function GetErro: Boolean;
+      function GetCodigo: Integer;
 
       procedure SetBairro(const Value: String);
       procedure SetCEP(const Value: String);
@@ -54,6 +56,7 @@ type
       procedure SetUf(const Value: String);
       procedure SetUnidade(const Value: String);
       procedure SetErro(const Value: Boolean);
+      procedure SetCodigo(const Value: Integer);
 
     public
       constructor Create;
@@ -75,6 +78,7 @@ type
       property DDD: Integer read GetDDD write SetDDD;
       property Siafi: String read GetSiafi write SetSiafi;
       property Erro: Boolean read GetErro write SetErro;
+      property Codigo: Integer read GetCodigo write SetCodigo;
   end;
 
 
@@ -106,6 +110,11 @@ end;
 function TDadosCEP.GetCEP: String;
 begin
   Result := FCEP;
+end;
+
+function TDadosCEP.GetCodigo: Integer;
+begin
+  Result := FCodigo;
 end;
 
 function TDadosCEP.GetComplemento: String;
@@ -176,6 +185,11 @@ end;
 procedure TDadosCEP.SetCEP(const Value: String);
 begin
   FCEP := Value;
+end;
+
+procedure TDadosCEP.SetCodigo(const Value: Integer);
+begin
+  FCodigo := Value;
 end;
 
 procedure TDadosCEP.SetComplemento(const Value: String);

@@ -2,7 +2,7 @@ program BuscaCepDelphi;
 
 uses
   Vcl.Forms,
-  Forms.Main in 'src\Forms\Forms.Main.pas' {Form1},
+  Forms.Main in 'src\Forms\Forms.Main.pas' {FrmMain},
   Model.Conexoes.Interfaces in 'src\Model\Conexoes\Model.Conexoes.Interfaces.pas',
   Model.Conexoes.FireDac in 'src\Model\Conexoes\Model.Conexoes.FireDac.pas',
   Model.Conexoes.Factory.Conexao in 'src\Model\Conexoes\Model.Conexoes.Factory.Conexao.pas',
@@ -12,7 +12,9 @@ uses
   Interfaces.BuscaCepFactory in 'src\Interfaces\Interfaces.BuscaCepFactory.pas',
   Interfaces.BuscaCEPXmlService in 'src\Interfaces\Interfaces.BuscaCEPXmlService.pas',
   Interfaces.BuscaCEPService in 'src\Interfaces\Interfaces.BuscaCEPService.pas',
-  Utils.BuscaCEPUtils in 'src\Utils\Utils.BuscaCEPUtils.pas';
+  Utils.BuscaCEPUtils in 'src\Utils\Utils.BuscaCEPUtils.pas',
+  Forms.DadosCep in 'src\Forms\Forms.DadosCep.pas' {FrmDadosCEP},
+  Interfaces.ListaDadosCEP in 'src\Interfaces\Interfaces.ListaDadosCEP.pas';
 
 {$R *.res}
 
@@ -20,6 +22,7 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFrmMain, FrmMain);
+  Application.CreateForm(TFrmDadosCEP, FrmDadosCEP);
   Application.Run;
 end.

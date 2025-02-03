@@ -2,7 +2,7 @@ unit Interfaces.Interfaces;
 
 interface
 
-uses System.JSON, Utils.BuscaCEPUtils;
+uses System.JSON, Utils.BuscaCEPUtils, System.Generics.Collections;
 
 type
   iDadosCEP = interface
@@ -22,6 +22,7 @@ type
     function GetDDD: Integer;
     function GetSiafi: String;
     function GetErro: Boolean;
+    function GetCodigo: Integer;
 
     procedure SetCEP(const Value: String);
     procedure SetLogradouro(const Value: String);
@@ -37,6 +38,7 @@ type
     procedure SetDDD(const Value: Integer);
     procedure SetSiafi(const Value: String);
     procedure SetErro(const Value: Boolean);
+    procedure SetCodigo(const Value: Integer);
 
     property CEP: String read GetCEP write SetCEP;
     property Logradouro: String read GetLogradouro write SetLogradouro;
@@ -52,17 +54,28 @@ type
     property DDD: Integer read GetDDD write SetDDD;
     property Siafi: String read GetSiafi write SetSiafi;
     property Erro: Boolean read GetErro write SetErro;
+    property Codigo: Integer read GetCodigo write SetCodigo;
+  end;
+
+  iListaDadosCEP = interface
+    ['{2D790B05-D20F-4789-AEAF-2D0B74210AF5}']
+    function GetItems: TList<iDadosCEP>;
+
+    property Items: TList<iDadosCEP> read GetItems;
   end;
 
   iBuscaCEPService = interface
     ['{F172ECDA-2DE7-437C-B1E2-776DF5C6F16A}']
     function getDadosResponse(ABodyResponse: String) : iDadosCEP;
+    function getListDadosResponse(ABodyResponse: String) : iListaDadosCEP;
+
     function BuscarCEP(ACEP: String): iDadosCEP;
+    function BuscarCEPPorEndereco(AEstado, ACidade, AEndereco: String): iListaDadosCEP;
   end;
 
   iBuscaCepFactory = interface
     ['{C6E4A3FA-5F76-4A1F-B8A7-8AC2E16C7E3D}']
-    function CriarServico(AFormato: TTypeBusca): iBuscaCEPService;
+    function CriarServicoBuscaCEP(AFormato: TTypeBusca): iBuscaCEPService;
   end;
 
 implementation
