@@ -115,6 +115,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 69
       Width = 121
       Height = 23
+      ReadOnly = True
       TabOrder = 0
     end
     object edtCEP: TEdit
@@ -122,6 +123,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 69
       Width = 121
       Height = 23
+      ReadOnly = True
       TabOrder = 1
     end
     object edtLogradouro: TEdit
@@ -129,6 +131,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 119
       Width = 248
       Height = 23
+      ReadOnly = True
       TabOrder = 2
     end
     object edtComplemento: TEdit
@@ -136,6 +139,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 269
       Width = 502
       Height = 23
+      ReadOnly = True
       TabOrder = 3
     end
     object edtUnidade: TEdit
@@ -143,6 +147,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 219
       Width = 121
       Height = 23
+      ReadOnly = True
       TabOrder = 4
     end
     object edtBairro: TEdit
@@ -150,6 +155,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 119
       Width = 248
       Height = 23
+      ReadOnly = True
       TabOrder = 5
     end
     object edtUf: TEdit
@@ -157,6 +163,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 169
       Width = 118
       Height = 23
+      ReadOnly = True
       TabOrder = 6
     end
     object edtLocalidade: TEdit
@@ -164,6 +171,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 169
       Width = 248
       Height = 23
+      ReadOnly = True
       TabOrder = 7
     end
     object edtRegiao: TEdit
@@ -171,6 +179,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 169
       Width = 118
       Height = 23
+      ReadOnly = True
       TabOrder = 8
     end
     object edtCodIBGE: TEdit
@@ -178,6 +187,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 69
       Width = 121
       Height = 23
+      ReadOnly = True
       TabOrder = 9
     end
     object edtCodGIA: TEdit
@@ -185,6 +195,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 219
       Width = 121
       Height = 23
+      ReadOnly = True
       TabOrder = 10
     end
     object edtDDD: TEdit
@@ -192,6 +203,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 219
       Width = 121
       Height = 23
+      ReadOnly = True
       TabOrder = 11
     end
     object edtCodSIAFI: TEdit
@@ -199,6 +211,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Top = 219
       Width = 121
       Height = 23
+      ReadOnly = True
       TabOrder = 12
     end
     object Panel2: TPanel
@@ -208,7 +221,7 @@ object FrmDadosCEP: TFrmDadosCEP
       Height = 41
       Align = alTop
       BevelInner = bvLowered
-      Caption = 'Dados do CEP'
+      Caption = 'Dados do Endere'#231'o'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -27

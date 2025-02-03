@@ -149,6 +149,9 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\Interfaces\Interfaces.ListaDadosCEP.pas"/>
+        <DCCReference Include="src\Interfaces\Interfaces.EnderecosInterfaces.pas"/>
+        <DCCReference Include="src\Interfaces\Interfaces.EnderecoService.pas"/>
+        <DCCReference Include="src\Interfaces\Interfaces.EnderecoFactory.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

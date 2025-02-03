@@ -20,6 +20,12 @@ type
     class function getNextValue(ANomeSequence: String; AConexao: iConexao): Integer;
   end;
 
+  TValidacoes = class
+    class procedure ValidarTamanhoMinimoString(AValue, ANome: String; ATamanhoMinimo: Integer);
+    class procedure ValidarCEP(ACEP: String);
+    class procedure ValidarEndereco(AUf, ACidade, AEndereco: String);
+  end;
+
 implementation
 
 uses
@@ -96,4 +102,32 @@ begin
   end;
 end;
 
+{ TValidacoes }
+
+class procedure TValidacoes.ValidarCEP(ACEP: String);
+begin
+  if ACEP.Trim.Length <> 8 then
+  begin
+    raise Exception.Create('O CEP informado é inválido');
+  end;
+end;
+
+class procedure TValidacoes.ValidarEndereco(AUf, ACidade, AEndereco: String);
+begin
+  ValidarTamanhoMinimoString(AUf, 'UF', 2);
+  ValidarTamanhoMinimoString(ACidade, 'Cidade', 3);
+  ValidarTamanhoMinimoString(AEndereco, 'Endereço', 3);
+end;
+
+class procedure TValidacoes.ValidarTamanhoMinimoString(AValue, ANome: String;
+  ATamanhoMinimo: Integer);
+begin
+  if AValue.Trim.Length < ATamanhoMinimo then
+  begin
+    raise Exception.CreateFmt('Tamanho minímo para o campo ''%s'' é %d. Atual %d. Por Favor Verifique!',
+                              [ANome, ATamanhoMinimo, AValue.Trim.Length]);
+  end;
+end;
+
 end.
+

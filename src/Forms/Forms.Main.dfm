@@ -20,31 +20,33 @@ object FrmMain: TFrmMain
     Top = 0
     Width = 844
     Height = 325
-    ActivePage = tsBuscarCEP
+    ActivePage = tsConsultarCEP
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 792
-    object tsBuscarCEP: TTabSheet
+    object tsConsultarCEP: TTabSheet
       Caption = 'Buscar CEP'
       object CEP: TLabel
         Left = 294
-        Top = 107
+        Top = 110
         Width = 21
         Height = 15
         Caption = 'CEP'
       end
-      object btnBuscarCEP: TButton
-        Left = 358
-        Top = 157
-        Width = 121
+      object btnConsultarCEP: TButton
+        Left = 299
+        Top = 160
+        Width = 116
         Height = 25
-        Caption = 'Buscar CEP'
+        Hint = 'Consultar CEP na api do ViaCep.com.br'
+        Caption = 'Consultar CEP'
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
-        OnClick = btnBuscarCEPClick
+        OnClick = btnConsultarCEPClick
       end
       object rgTipoRetorno: TRadioGroup
         Left = 421
-        Top = 116
+        Top = 119
         Width = 121
         Height = 35
         Caption = 'Tipo Retorno: '
@@ -57,7 +59,7 @@ object FrmMain: TFrmMain
       end
       object edtCEP: TEdit
         Left = 294
-        Top = 128
+        Top = 131
         Width = 121
         Height = 23
         NumbersOnly = True
@@ -70,7 +72,7 @@ object FrmMain: TFrmMain
         Height = 41
         Align = alTop
         BevelInner = bvLowered
-        Caption = 'Buscar CEP'
+        Caption = 'Consultar CEP'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -27
@@ -78,7 +80,18 @@ object FrmMain: TFrmMain
         Font.Style = []
         ParentFont = False
         TabOrder = 3
-        ExplicitWidth = 784
+      end
+      object btnListarCEP: TButton
+        Left = 421
+        Top = 160
+        Width = 105
+        Height = 25
+        Hint = 'Listar os Dados do CEP j'#225' Cadastrado no Sistema.'
+        Caption = 'Listar CEP'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 4
+        OnClick = btnListarCEPClick
       end
     end
     object tsEndereco: TTabSheet
@@ -87,9 +100,9 @@ object FrmMain: TFrmMain
       object Label1: TLabel
         Left = 245
         Top = 60
-        Width = 35
+        Width = 14
         Height = 15
-        Caption = 'Estado'
+        Caption = 'UF'
       end
       object Label2: TLabel
         Left = 245
@@ -112,7 +125,7 @@ object FrmMain: TFrmMain
         Height = 41
         Align = alTop
         BevelInner = bvLowered
-        Caption = 'Buscar Endere'#231'o'
+        Caption = 'Consultar CEP por Endere'#231'o Completo'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -27
@@ -120,7 +133,6 @@ object FrmMain: TFrmMain
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 784
       end
       object edtCidade: TEdit
         Left = 245
@@ -136,14 +148,17 @@ object FrmMain: TFrmMain
         Height = 23
         TabOrder = 2
       end
-      object btnBuscarEndereco: TButton
+      object btnConsultarEndereco: TButton
         Left = 301
         Top = 210
         Width = 105
         Height = 25
-        Caption = 'Buscar Endere'#231'o'
+        Hint = 'Consultar Endere'#231'o na api do ViaCep.com.br'
+        Caption = 'Consultar CEPs'
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 3
-        OnClick = btnBuscarEnderecoClick
+        OnClick = btnConsultarEnderecoClick
       end
       object cbUf: TComboBox
         Left = 245
@@ -200,7 +215,12 @@ object FrmMain: TFrmMain
         Top = 210
         Width = 105
         Height = 25
+        Hint = 
+          'Listar os Dados do Endere'#231'os, de Acordo com o Filtro, j'#225' Cadastr' +
+          'ados no Sistema.'
         Caption = 'Listar Endere'#231'os'
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 6
         OnClick = btnListarPorEnderecoClick
       end
@@ -208,20 +228,22 @@ object FrmMain: TFrmMain
     object tsCEPs: TTabSheet
       Caption = 'CEPs Cadastrados'
       ImageIndex = 1
-      object DBGrid1: TDBGrid
+      object dgDados: TDBGrid
         Left = 0
         Top = 41
         Width = 836
         Height = 213
         Align = alClient
-        DataSource = DataSource1
+        DataSource = ds1
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        PopupMenu = PopupMenu1
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -12
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
+        OnDblClick = dgDadosDblClick
         Columns = <
           item
             Expanded = False
@@ -325,7 +347,6 @@ object FrmMain: TFrmMain
         Font.Style = []
         ParentFont = False
         TabOrder = 1
-        ExplicitWidth = 784
       end
       object Panel4: TPanel
         Left = 0
@@ -334,7 +355,32 @@ object FrmMain: TFrmMain
         Height = 41
         Align = alBottom
         TabOrder = 2
-        ExplicitWidth = 784
+        object Label4: TLabel
+          Left = 8
+          Top = 5
+          Width = 232
+          Height = 15
+          Caption = 'Duplo Clique para Abrir Dados do Endere'#231'o.'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBrown
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label5: TLabel
+          Left = 8
+          Top = 22
+          Width = 272
+          Height = 15
+          Caption = 'Clique com Bot'#227'o Direito para Excluir um Endere'#231'o.'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBrown
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
         object btnListaEnderecos: TButton
           Left = 314
           Top = 8
@@ -347,7 +393,7 @@ object FrmMain: TFrmMain
       end
     end
   end
-  object DataSource1: TDataSource
+  object ds1: TDataSource
     AutoEdit = False
     DataSet = qryDados
     Left = 64
@@ -361,5 +407,20 @@ object FrmMain: TFrmMain
   object qryDados: TFDQuery
     Left = 68
     Top = 114
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 804
+    Top = 34
+    object miExcluirEndereco: TMenuItem
+      Action = acExcluirEndereco
+    end
+  end
+  object ActionList1: TActionList
+    Left = 716
+    Top = 34
+    object acExcluirEndereco: TAction
+      Caption = 'Excluir Endere'#231'o'
+      OnExecute = acExcluirEnderecoExecute
+    end
   end
 end

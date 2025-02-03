@@ -14,7 +14,10 @@ uses
   Interfaces.BuscaCEPService in 'src\Interfaces\Interfaces.BuscaCEPService.pas',
   Utils.BuscaCEPUtils in 'src\Utils\Utils.BuscaCEPUtils.pas',
   Forms.DadosCep in 'src\Forms\Forms.DadosCep.pas' {FrmDadosCEP},
-  Interfaces.ListaDadosCEP in 'src\Interfaces\Interfaces.ListaDadosCEP.pas';
+  Interfaces.ListaDadosCEP in 'src\Interfaces\Interfaces.ListaDadosCEP.pas',
+  Interfaces.EnderecosInterfaces in 'src\Interfaces\Interfaces.EnderecosInterfaces.pas',
+  Interfaces.EnderecoService in 'src\Interfaces\Interfaces.EnderecoService.pas',
+  Interfaces.EnderecoFactory in 'src\Interfaces\Interfaces.EnderecoFactory.pas';
 
 {$R *.res}
 
