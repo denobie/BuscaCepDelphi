@@ -27,7 +27,6 @@
 #
 
 # Delphi compiler-generated binaries (safe to delete)
-*.exe
 *.bpl
 *.bpi
 *.dcp
@@ -63,37 +62,3 @@
 __history/
 __recovery/
 *.~*
-
-# Castalia statistics file (since XE7 Castalia is distributed with Delphi)
-*.stat
-
-# Boss dependency manager vendor folder https://github.com/HashLoad/boss
-modules/
-
-*.cbk
-*.log
-AiseTributTributacao/ErrosCadastro.txt
-AiseTributTributacao/bin
-AiseTributTributacao/bin/dunit.ini
-*.orig
-Servidor_Tributos.vrc
-AiseFolhaRHFolha/bin/dunit.ini
-AiseFolhaRHFolha/Unitteste/AiseFolhaRHSQLExtractor/bin/DBConfig.ini
-AiseTributTributacao/documentos/mapeamento/parcelamento/arqs/*.*
-AiseTributTributacao/documentos/mapeamento/geracaobloqueto/arqs/*.*
-/ACC
-/AiseComumComponentes/d7_C
-/Att
-/AiseTributTributacao/src/webservice/ATW
-/AiseTributTributacao/src/webservice/ATWSGEO
-/AiseTributTributacao/src/webservice/ATWSSGO
-/AiseTributTributacao/src/webservice/ATWST
-/AiseTributTributacao/src/webservice/AiseTributWebServiceGEO/ap
-/AiseTributTributacao/src/webservice/AiseTributWebServiceSGO/ap
-/AiseTributTributacao/src/webservice/AiseTributWebServiceTotem/ap
-/AiseTributTributacao/src/ws
-/AiseTributTributacao/src/webservice/AiseTributWebService
-/AiseTributTributacao/src/webservice/ATWS
-/AiseComumComponentes/third/WPToolsXE7/install/v7.20d
-/AiseComumComponentes/third/WPToolsXE7
-/AiseComumLib/DynamicService/packages
