@@ -33,7 +33,7 @@ Banco de Dados PostgreSQL 16 (Utilizada versão 16.4). Você pode restaurar o ba
 Nome do Banco Utilizar foi buscaCep.
 Exemplo Comando para Restaurar: pg_restore -U <usuario> -d <database> -h <host> -p <porta> -v <caminho do buscaCEP.bkp>
 
-Copiar o executável do projeto e a DLL para conexão com o PostgreSQL para a mesma pasta. Ou pode baixar o projeto e executar o executável direto da pasta bin.
+Copiar o executável do projeto e a [libpq.dll](https://github.com/denobie/BuscaCepDelphi/blob/main/bin/libpq.dll)  para conexão com o PostgreSQL para a mesma pasta. Ou pode baixar o projeto e executar o executável direto da pasta bin.
 
 # Mode de Usar
 O Sistema possui 3 abas sendo elas:

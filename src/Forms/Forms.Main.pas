@@ -12,7 +12,8 @@ uses
   FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.ExtCtrls, Interfaces.Interfaces, Interfaces.BuscaCepFactory, Utils.BuscaCEPUtils,
   Forms.DadosCep, Vcl.ComCtrls, Interfaces.EnderecoFactory,
-  Interfaces.EnderecosInterfaces, Vcl.Menus, System.Actions, Vcl.ActnList;
+  Interfaces.EnderecosInterfaces, Vcl.Menus, System.Actions, Vcl.ActnList,
+  System.IniFiles;
 
 type
   TOperacao = (toListar, toAtualizar);
@@ -54,7 +55,6 @@ type
     btnListarCEP: TButton;
     procedure btnListaEnderecosClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure FormCreate(Sender: TObject);
     procedure btnConsultarCEPClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnConsultarEnderecoClick(Sender: TObject);
@@ -96,14 +96,10 @@ uses
 
 
 {$R *.dfm}
-procedure TFrmMain.FormCreate(Sender: TObject);
+procedure TFrmMain.FormShow(Sender: TObject);
 begin
   IniciarConexaoBD;
   FEnderecoService := TEnderecoFactory.New(FConexao).CriarEnderecoService;
-end;
-
-procedure TFrmMain.FormShow(Sender: TObject);
-begin
   pgControl.ActivePage := tsConsultarCEP;
 end;
 
@@ -238,18 +234,36 @@ begin
 end;
 
 procedure TFrmMain.IniciarConexaoBD;
+var
+  vArquivoINI: TIniFile;
+  vPathINI: String;
 begin
-  FConexao := TFactoryConexao.New
-                .ConexaoFiredac
-                .Parametros
-                 .DriverName('PG')
-                 .Server('127.0.0.1')
-                 .Database('buscaCep')
-                 .User_Name('postgres')
-                 .Password('deno')
-                 .Port('5432')
-                .EndParametros
-                .Conectar;
+  vPathINI := ExtractFilePath(ParamStr(0)) + 'buscaCEP.ini';
+
+  if FileExists(vPathINI) then
+  begin
+    vArquivoINI := TIniFile.Create(vPathINI);
+    try
+      FConexao := TFactoryConexao.New
+                    .ConexaoFiredac
+                    .Parametros
+                     .DriverName(vArquivoINI.ReadString('Database', 'DriverName', 'PG'))
+                     .Server(vArquivoINI.ReadString('Database', 'Server', '127.0.0.1'))
+                     .Database(vArquivoINI.ReadString('Database', 'Database', 'buscaCep'))
+                     .User_Name(vArquivoINI.ReadString('Database', 'User_Name', 'postgres'))
+                     .Password(vArquivoINI.ReadString('Database', 'Password', 'deno'))
+                     .Port(vArquivoINI.ReadString('Database', 'Port', '5432'))
+                    .EndParametros
+                    .Conectar;
+    finally
+      vArquivoINI.Free;
+  end;
+  end
+  else
+  begin
+    ShowMessage('Arquivo buscaCEP.ini não encontrado!. Path: ' + vPathINI);
+    Application.Terminate;
+  end;
 end;
 
 procedure TFrmMain.FinalizarConexaoBD;

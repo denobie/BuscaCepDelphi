@@ -12,7 +12,6 @@ object FrmMain: TFrmMain
   Font.Style = []
   Position = poScreenCenter
   OnClose = FormClose
-  OnCreate = FormCreate
   OnShow = FormShow
   TextHeight = 15
   object pgControl: TPageControl
