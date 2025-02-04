@@ -35,9 +35,9 @@ Exemplo Comando para Restaurar: pg_restore -U <usuario> -d <database> -h <host> 
 
 Copiar o executável do projeto, o buscaCep.ini e a [libpq.dll](https://github.com/denobie/BuscaCepDelphi/blob/main/bin/libpq.dll)  para conexão com o PostgreSQL para a mesma pasta. Ou pode baixar o projeto e executar o executável direto da pasta bin.
 
-No buscaCep.ini está as informações para conectar ao Banco de Dados;
+No buscaCep.ini está as informações para conectar ao Banco de Dados altere para suas informações caso necessite;
 
-```
+```INI
 [Database]
 DriverName=PG
 Server=127.0.0.1
