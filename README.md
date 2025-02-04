@@ -30,6 +30,9 @@ Obs: Algumas factories só possuem uma interface, pois não surgiu a demanda de 
 
 # Requisitos Técnicos
 Banco de Dados PostgreSQL 16 (Utilizada versão 16.4). Você pode restaurar o backup do Banco que está [aqui](https://github.com/denobie/BuscaCepDelphi/blob/main/bin/buscaCEP.bkp) ou utilizar o script de criação das tabelas que está [aqui](https://github.com/denobie/BuscaCepDelphi/blob/main/bin/ScriptTabela.sql).
+Nome do Banco Utilizar foi buscaCep.
+Exemplo Comando para Restaurar: pg_restore -U <usuario> -d <database> -h <host> -p <porta> -v <caminho do buscaCEP.bkp>
+
 Copiar o executável do projeto e a DLL para conexão com o PostgreSQL para a mesma pasta. Ou pode baixar o projeto e executar o executável direto da pasta bin.
 
 # Mode de Usar
