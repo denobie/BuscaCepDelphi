@@ -9,7 +9,6 @@ type
   TDenoBuscaCEP = class(TComponent)
   private
     FTipoBusca: TTypeBusca;
-    FOnBuscarCEP: TNotifyEvent;
     FExecute: Boolean;
     FCEP: String;
     FRetorno: iDadosCEP;
