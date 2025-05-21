@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F079DE69-3C6B-4465-892B-7CE9E3F5E506}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\BuscaCepDelphi.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\src\TDenoBuscaCEP\pkgDenoBuscaCEP.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="BuscaCepDelphi">
+        <MSBuild Projects="..\BuscaCepDelphi.dproj"/>
+    </Target>
+    <Target Name="BuscaCepDelphi:Clean">
+        <MSBuild Projects="..\BuscaCepDelphi.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BuscaCepDelphi:Make">
+        <MSBuild Projects="..\BuscaCepDelphi.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pkgDenoBuscaCEP">
+        <MSBuild Projects="..\src\TDenoBuscaCEP\pkgDenoBuscaCEP.dproj"/>
+    </Target>
+    <Target Name="pkgDenoBuscaCEP:Clean">
+        <MSBuild Projects="..\src\TDenoBuscaCEP\pkgDenoBuscaCEP.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pkgDenoBuscaCEP:Make">
+        <MSBuild Projects="..\src\TDenoBuscaCEP\pkgDenoBuscaCEP.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="BuscaCepDelphi;pkgDenoBuscaCEP"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="BuscaCepDelphi:Clean;pkgDenoBuscaCEP:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="BuscaCepDelphi:Make;pkgDenoBuscaCEP:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

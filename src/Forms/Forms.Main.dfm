@@ -92,6 +92,15 @@ object FrmMain: TFrmMain
         TabOrder = 4
         OnClick = btnListarCEPClick
       end
+      object btnConsultarCEPComTComp: TButton
+        Left = 299
+        Top = 191
+        Width = 116
+        Height = 25
+        Caption = 'Buscar Via TComp.'
+        TabOrder = 5
+        OnClick = btnConsultarCEPComTCompClick
+      end
     end
     object tsEndereco: TTabSheet
       Caption = 'Buscar Endere'#231'o'
@@ -421,5 +430,11 @@ object FrmMain: TFrmMain
       Caption = 'Excluir Endere'#231'o'
       OnExecute = acExcluirEnderecoExecute
     end
+  end
+  object DenoBuscaCEP1: TDenoBuscaCEP
+    Execute = False
+    TipoBusca = ttbJSON
+    Left = 636
+    Top = 138
   end
 end

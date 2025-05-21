@@ -3,7 +3,7 @@ unit Interfaces.BuscaCEPJsonService;
 interface
 
 uses
-  Interfaces.Interfaces, Interfaces.BuscaCEPService, Utils.BuscaCEPUtils;
+  Interfaces.Interfaces, Interfaces.BuscaCEPService, Utils.Types;
 
 type
   TBuscaCEPJsonService = class(TBuscaCEPService)

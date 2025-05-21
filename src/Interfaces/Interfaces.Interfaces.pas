@@ -2,7 +2,7 @@ unit Interfaces.Interfaces;
 
 interface
 
-uses System.JSON, Utils.BuscaCEPUtils, System.Generics.Collections;
+uses System.JSON, Utils.Types, System.Generics.Collections;
 
 type
   iDadosCEP = interface

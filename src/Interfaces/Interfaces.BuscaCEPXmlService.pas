@@ -3,7 +3,7 @@ unit Interfaces.BuscaCEPXmlService;
 interface
 
 uses
-  Interfaces.Interfaces, Interfaces.BuscaCEPService, Utils.BuscaCEPUtils;
+  Interfaces.Interfaces, Interfaces.BuscaCEPService, Utils.Types;
 
 type
   TBuscaCEPXmlService = class(TBuscaCEPService)

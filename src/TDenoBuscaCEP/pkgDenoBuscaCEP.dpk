@@ -1,0 +1,47 @@
+package pkgDenoBuscaCEP;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  xmlrtl,
+  RESTComponents;
+
+contains
+  Componente.DenoBuscaCEP in 'src\Componente.DenoBuscaCEP.pas',
+  Interfaces.BuscaCEPJsonService in '..\Interfaces\Interfaces.BuscaCEPJsonService.pas',
+  Interfaces.BuscaCEPService in '..\Interfaces\Interfaces.BuscaCEPService.pas',
+  Interfaces.BuscaCEPXmlService in '..\Interfaces\Interfaces.BuscaCEPXmlService.pas',
+  Interfaces.DadosCEP in '..\Interfaces\Interfaces.DadosCEP.pas',
+  Interfaces.Interfaces in '..\Interfaces\Interfaces.Interfaces.pas',
+  Interfaces.ListaDadosCEP in '..\Interfaces\Interfaces.ListaDadosCEP.pas',
+  Utils.Types in '..\Utils\Utils.Types.pas',
+  Interfaces.BuscaCepFactory in '..\Interfaces\Interfaces.BuscaCepFactory.pas';
+
+end.
+

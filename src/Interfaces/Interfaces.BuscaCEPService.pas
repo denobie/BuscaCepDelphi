@@ -3,7 +3,7 @@ unit Interfaces.BuscaCEPService;
 interface
 
 uses
-  Interfaces.Interfaces, Utils.BuscaCEPUtils;
+  Interfaces.Interfaces, Utils.Types;
 
 const
   URL_VIACEP_POR_CEP = 'https://viacep.com.br/ws/%s/%s/';

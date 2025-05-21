@@ -10,10 +10,10 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.UI.Intf,
   FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  Vcl.ExtCtrls, Interfaces.Interfaces, Interfaces.BuscaCepFactory, Utils.BuscaCEPUtils,
+  Vcl.ExtCtrls, Interfaces.Interfaces, Interfaces.BuscaCepFactory, Utils.Types, Utils.BuscaCEPUtils,
   Forms.DadosCep, Vcl.ComCtrls, Interfaces.EnderecoFactory,
   Interfaces.EnderecosInterfaces, Vcl.Menus, System.Actions, Vcl.ActnList,
-  System.IniFiles;
+  System.IniFiles, Componente.DenoBuscaCEP;
 
 type
   TOperacao = (toListar, toAtualizar);
@@ -53,6 +53,8 @@ type
     acExcluirEndereco: TAction;
     Label5: TLabel;
     btnListarCEP: TButton;
+    btnConsultarCEPComTComp: TButton;
+    DenoBuscaCEP1: TDenoBuscaCEP;
     procedure btnListaEnderecosClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnConsultarCEPClick(Sender: TObject);
@@ -62,6 +64,7 @@ type
     procedure acExcluirEnderecoExecute(Sender: TObject);
     procedure dgDadosDblClick(Sender: TObject);
     procedure btnListarCEPClick(Sender: TObject);
+    procedure btnConsultarCEPComTCompClick(Sender: TObject);
   private
     { Private declarations }
     FConexao: iConexao;
@@ -173,6 +176,19 @@ end;
 procedure TFrmMain.btnConsultarCEPClick(Sender: TObject);
 begin
   ConsultarCEP;
+end;
+
+procedure TFrmMain.btnConsultarCEPComTCompClick(Sender: TObject);
+var
+  Retorno: iDadosCEP;
+begin
+  TValidacoes.ValidarCEP(edtCEP.Text);
+
+  DenoBuscaCEP1.CEP       := edtCep.text;
+  DenoBuscaCEP1.TipoBusca := TTypeBusca(rgTipoRetorno.ItemIndex);
+  DenoBuscaCEP1.Execute   := True;
+
+  MostrarDadosCEP(DenoBuscaCEP1.Retorno);
 end;
 
 procedure TFrmMain.btnConsultarEnderecoClick(Sender: TObject);

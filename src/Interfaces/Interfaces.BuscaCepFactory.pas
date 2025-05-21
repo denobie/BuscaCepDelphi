@@ -3,7 +3,7 @@ unit Interfaces.BuscaCepFactory;
 interface
 
 uses
-  Interfaces.Interfaces, Utils.BuscaCEPUtils;
+  Interfaces.Interfaces, Utils.Types;
 
 type
   TBuscaCepFactory = class(TInterfacedObject, iBuscaCepFactory)

@@ -2,18 +2,13 @@ unit Utils.BuscaCEPUtils;
 
 interface
 
-uses FireDAC.Comp.Client, FireDAC.Stan.Param, Model.Conexoes.Interfaces, Data.DB;
+uses FireDAC.Comp.Client, FireDAC.Stan.Param, Model.Conexoes.Interfaces, Data.DB,
+     Utils.Types;
 
 const
   cCONTEM = '%%%s%%';
 
 type
-  TTypeBusca = (ttbJSON, ttbXML);
-
-  TTypeBuscaUtils = class
-    class function TypeBuscaToStr(AValue: TTypeBusca):String;
-  end;
-
   TSequenceUtils = class
     class procedure createSequence(ANomeSequence: String; AConexao: iConexao);
     class function existeSequence(ANomeSequence: String; AConexao: iConexao): Boolean;
@@ -30,16 +25,6 @@ implementation
 
 uses
   System.SysUtils;
-
-{ TTypeBuscaUtils }
-
-class function TTypeBuscaUtils.TypeBuscaToStr(AValue: TTypeBusca): String;
-begin
-  case AValue of
-    ttbJSON: Result := 'json';
-    ttbXML:  Result := 'xml';
-  end;
-end;
 
 { TSequenceUtils }
 

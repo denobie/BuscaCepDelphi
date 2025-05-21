@@ -17,7 +17,8 @@ uses
   Interfaces.ListaDadosCEP in 'src\Interfaces\Interfaces.ListaDadosCEP.pas',
   Interfaces.EnderecosInterfaces in 'src\Interfaces\Interfaces.EnderecosInterfaces.pas',
   Interfaces.EnderecoService in 'src\Interfaces\Interfaces.EnderecoService.pas',
-  Interfaces.EnderecoFactory in 'src\Interfaces\Interfaces.EnderecoFactory.pas';
+  Interfaces.EnderecoFactory in 'src\Interfaces\Interfaces.EnderecoFactory.pas',
+  Utils.Types in 'src\Utils\Utils.Types.pas';
 
 {$R *.res}
 
