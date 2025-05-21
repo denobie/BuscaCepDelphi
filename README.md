@@ -33,7 +33,8 @@ Este projeto visa atender os seguintes casos de uso:
 
 - **Banco de Dados:** PostgreSQL 16 (utilizada versão 16.4).  
 - **Criação do Banco:** Você pode restaurar o backup disponível [aqui](https://github.com/denobie/BuscaCepDelphi/blob/main/bin/buscaCEP.bkp) ou utilizar o script de criação das tabelas [aqui](https://github.com/denobie/BuscaCepDelphi/blob/main/bin/ScriptTabela.sql).  
-- **Nome do Banco:** `buscaCep`  
+- **Nome do Banco:** `buscaCep`
+- Caso dê erro na função unaccent do Postgres, adicione esse extensão `CREATE EXTENSION IF NOT EXISTS unaccent;`
 
 ### Exemplo de comando para restaurar o banco:  
 
